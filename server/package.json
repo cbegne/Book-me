@@ -1,0 +1,35 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "booking server side",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cbegne"
+  },
+  "scripts": {
+    "start": "nodemon --exec 'babel-node server.js'",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.24.1",
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "moment": "^2.18.1",
+    "mongodb": "^2.2.28",
+    "morgan": "^1.8.2",
+    "nodemon": "^1.11.0",
+    "query-string": "^4.3.4"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.5.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.3.0"
+  }
+}
