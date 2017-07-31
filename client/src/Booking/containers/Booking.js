@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import Calendar from './Calendar.js';
 import Capacity from '../components/Capacity.js';
+import ShowRooms from '../components/ShowRooms.js';
 import Equipment from '../components/Equipment.js';
 import SubmitForm from '../components/SubmitForm.js';
 
@@ -12,11 +13,35 @@ import '../css/booking.css';
 class Booking extends Component {
 
   state = {
-    day: moment,
-    start: undefined,
-    end: undefined,
-    people: 0,
+    day: moment(),
+    start: moment(),
+    end: moment().add(1, 'hours'),
+    people: 1,
     equipment: [],
+    error: '',
+    rooms: undefined,
+  }
+
+  saveBooking = (room) => {
+    const { day, start, end } = this.state;
+    const book = Object.assign({},
+      { day },
+      { start },
+      { end },
+      { room },
+    );
+    const url = '/api/book_room';
+    axios.post(url, book)
+    .then(({ data }) => {
+      const { success, error } = data;
+      if (success === false) {
+        this.setState({ error });
+      } else {
+        console.log(success);
+        // this.setState({ rooms });
+      }
+    })
+    .catch(err => console.error('Error: ', err));
   }
 
   saveState = (field, value) => {
@@ -24,54 +49,62 @@ class Booking extends Component {
   }
 
   saveDate = (field, value) => {
-    const test = moment(value).toISOString();
-    console.log(test);
-    this.setState({ [field]: test });
+    this.setState({ [field]: value });
   }
 
   addEquipment = (value) => {
     const { equipment } = this.state;
-    const index = equipment.indexOf(value);
+    // const index = equipment.indexOf(value);
+    const index = equipment.findIndex(i => i.name === value);
     if (index === -1) {
-      equipment.push(value);
+      equipment.push({ name: value });
     } else {
       equipment.splice(index, 1);
     }
     this.setState({ equipment });
-    console.log(equipment);
   }
 
-  findRooms = () => {
-    const login = 'cbegne'; // loggedUser, get from cookies or else
-    const search = Object.assign({}, this.state, login);
+  findRooms = (event) => {
+    event.preventDefault();
+    const { day, start, end, people, equipment } = this.state;
+    const peopleNumber = parseInt(people, 10);
+    const search = Object.assign({},
+      { day },
+      { start },
+      { end },
+      { people: peopleNumber },
+      { equipment },
+    );
     const url = '/api/find_room';
     axios.post(url, search)
     .then(({ data }) => {
-      const { success, message } = data;
-      console.log(message);
+      const { success, error } = data;
       if (success === false) {
-        this.setState({ success: false });
-      }
-      if (success === true) {
-        this.setState({ success: true });
+        this.setState({ error });
+      } else {
+        const { rooms } = data;
+        this.setState({ rooms });
       }
     })
     .catch(err => console.error('Error: ', err));
   }
 
   render() {
+    const { day, start, end, rooms } = this.state;
+
     return (
       <div className="booking-container">
         <h1>Book a room</h1>
         <div>
           The room I need:
           <form className="" onSubmit={this.findRooms}>
-            <Calendar onChange={this.saveDate} />
+            <Calendar day={day} start={start} end={end} onChange={this.saveDate} />
             Filter more:
             <Capacity onChange={this.saveState} />
             <Equipment onChange={this.addEquipment} />
             <SubmitForm className="btn btn-default" value="See availability" />
           </form>
+          <ShowRooms rooms={rooms} onClick={this.saveBooking} />
         </div>
       </div>
     );
@@ -79,5 +112,3 @@ class Booking extends Component {
 }
 
 export default Booking;
-
-// <ShowRooms />

@@ -19,9 +19,9 @@ class Equipment extends Component {
           />
           TV
         </label>
-        <label htmlFor="retro">
+        <label htmlFor="Retro Projecteur">
           <input
-            name="retro"
+            name="Retro Projecteur"
             type="checkbox"
             onChange={this.handleCheckbox}
           />

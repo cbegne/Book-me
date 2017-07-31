@@ -1,3 +1,22 @@
 .input-group {
   width: 200px;
 }
+
+.room-box {
+  padding: 15px;
+  margin: 5px;
+  background-color: #ffffff;
+  border: 1px solid #D8D8D8;
+  width: 280px;
+  text-decoration: none;
+  text-align: left;
+}
+
+.room-box-header {
+  display: flex;
+}
+
+.infos-oneroom {
+  display: inline-block;
+  width: 90px;
+}

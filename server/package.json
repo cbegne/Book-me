@@ -20,6 +20,7 @@
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.3",
     "express": "^4.15.3",
+    "jsonfile": "^3.0.1",
     "moment": "^2.18.1",
     "mongodb": "^2.2.28",
     "morgan": "^1.8.2",

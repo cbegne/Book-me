@@ -76,16 +76,28 @@ const initDb = async (req, res) => {
        author: "cbegne",
        start: "2017-08-01T12:00:00.812Z",
        end: "2017-08-01T13:00:00.812Z",
-       createdAt: "2017-07-30T12:39:29.812Z",
-       updatedAt: "2017-07-30T17:31:39.489Z"
+       createdAt: "2017-07-30T12:39:29.812Z"
     },
     {
        name: "Salle #2",
        author: "mmaster",
        start: "2017-08-01T10:00:00.812Z",
        end: "2017-08-01T12:00:00.812Z",
-       createdAt: "2017-07-30T12:39:55.384Z",
-       updatedAt: "2017-07-30T13:33:37.184Z"
+       createdAt: "2017-07-30T12:39:55.384Z"
+    },
+    {
+       name: "Salle de ouf",
+       author: "mmaster",
+       start: "2017-08-01T10:00:00.812Z",
+       end: "2017-08-01T12:00:00.812Z",
+       createdAt: "2017-07-30T12:39:55.384Z"
+    },
+    {
+       name: "Salle nulle",
+       author: "mmaster",
+       start: "2017-08-01T10:00:00.812Z",
+       end: "2017-08-01T12:00:00.812Z",
+       createdAt: "2017-07-30T12:39:55.384Z"
     }
   ]);
   res.send({ success: true });

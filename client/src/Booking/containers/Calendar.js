@@ -10,7 +10,6 @@ import 'rc-time-picker/assets/index.css';
 class Calendar extends Component {
 
   state = {
-    date: moment(),
     focused: undefined,
   }
 
@@ -20,7 +19,6 @@ class Calendar extends Component {
 
   handleDay = (date) => {
     this.props.onChange('day', date);
-    this.setState({ date });
   }
 
   handleStartTime = (start) => {
@@ -32,20 +30,20 @@ class Calendar extends Component {
   }
 
   render() {
-    const { date } = this.state;
+    const { day, start, end } = this.props;
 
     return (
       <div className="calendar-container">
       Day
         <SingleDatePicker
-          date={date}
+          date={day}
           onDateChange={this.handleDay}
           focused={this.state.focused}
           onFocusChange={({ focused }) => this.setState({ focused })}
         />
         Starting at
         <TimePicker
-          defaultValue={moment()}
+          defaultValue={start}
           format="HH:mm"
           showSecond={false}
           disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 22, 23]}
@@ -53,7 +51,7 @@ class Calendar extends Component {
         />
         Ending at
         <TimePicker
-          defaultValue={moment()}
+          defaultValue={end}
           format="HH:mm"
           showSecond={false}
           disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 22, 23]}

@@ -11,6 +11,7 @@ class MyRouter extends Component {
     return (
       <Router>
         <Switch>
+          <Route exact path="/" component={Booking} />
           <Route exact path="/init" component={InitDb} />
           <Route exact path="/booking" component={Booking} />
           <Route path="*" component={NoMatch} />

@@ -13,7 +13,7 @@ class Capacity extends Component {
     let i = 1;
     for (i = 1; i < 27; i += 1) {
       const key = `people_${i}`;
-      list.push(<option value={i} key={key} >{i}</option>);
+      list.push(<option value={i} key={key}>{i}</option>);
     }
 
     return (
