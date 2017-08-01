@@ -11,7 +11,7 @@ class InitDb extends Component {
 
   componentDidMount = () => {
     const url = '/api/init_db';
-    axios.get(url)
+    axios.put(url)
     .then(({ data: { success } }) => {
       this.setState({ success });
     })

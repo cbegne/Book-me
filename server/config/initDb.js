@@ -72,32 +72,32 @@ const initDb = async (req, res) => {
   await Mongo.db.collection('bookings').drop(); // pour nettoyer base en dev
   Mongo.db.collection('bookings').insertMany([
     {
-       name: "Salle #1",
-       author: "cbegne",
-       start: "2017-08-01T12:00:00.812Z",
-       end: "2017-08-01T13:00:00.812Z",
-       createdAt: "2017-07-30T12:39:29.812Z"
+      name: "Salle Okjsdkso",
+      author: "cbegne",
+      start: "2017-08-01T08:57:47.360Z",
+      end: "2017-08-01T09:57:47.362Z",
+      createdAt: "2017-08-01T08:59:47.362Z"
     },
     {
-       name: "Salle #2",
-       author: "mmaster",
-       start: "2017-08-01T10:00:00.812Z",
-       end: "2017-08-01T12:00:00.812Z",
-       createdAt: "2017-07-30T12:39:55.384Z"
+      name: "Salle #1",
+      author: "cbegne",
+      start: "2017-08-01T09:00:12.084Z",
+      end: "2017-08-01T10:00:12.085Z",
+      createdAt: "2017-08-01T09:00:12.086Z"
     },
     {
-       name: "Salle de ouf",
-       author: "mmaster",
-       start: "2017-08-01T10:00:00.812Z",
-       end: "2017-08-01T12:00:00.812Z",
-       createdAt: "2017-07-30T12:39:55.384Z"
+      name: "Salle #1",
+      author: "cbegne",
+      start: "2017-08-01T10:17:16.309Z",
+      end: "2017-08-01T11:17:16.310Z",
+      createdAt: "2017-08-01T10:18:16.310Z"
     },
     {
-       name: "Salle nulle",
-       author: "mmaster",
-       start: "2017-08-01T10:00:00.812Z",
-       end: "2017-08-01T12:00:00.812Z",
-       createdAt: "2017-07-30T12:39:55.384Z"
+      name: "Salle Okjsdkso",
+      author: "cbegne",
+      start: "2017-08-01T06:18:19.154Z",
+      end: "2017-08-01T08:18:19.155Z",
+      createdAt: "2017-08-01T10:19:19.155Z"
     }
   ]);
   res.send({ success: true });
