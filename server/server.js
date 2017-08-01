@@ -11,7 +11,7 @@ import Mongo from './config/MongoConnection.js';
 const app = express();
 const server = http.createServer(app);
 
-moment().locale('en-gb');
+moment().locale('fr');
 // Connect to Mongo Database
 Mongo.connect();
 
