@@ -30,15 +30,35 @@ const getMatchingRooms = async (people, equipment) => {
 
 const getAvailableRooms = async (startingTime, endingTime, roomNames) => {
   try {
-    const room = await Mongo.db.collection('rooms').find(
+    const room = await Mongo.db.collection('bookings').find(
       {
-        // name: { $in: roomNames },
-        start: { $gte: startingTime },
-        // end: { $lt: endingTime }
+        name: { $in: roomNames },
+        $and:
+        [
+          {
+            $or:
+            [
+              {
+                start: { $not: { $gt: startingTime, $gte: endingTime } }
+              },
+              {
+                end: { $not: { $gt: endingTime } }
+              }
+            ]
+          },
+          {
+            $or:
+            [
+              {
+                start: { $not: { $lt: startingTime } }
+              },
+              {
+                end: { $not: { $lt: endingTime, $lte: startingTime } }
+              }
+            ]
+          },
+        ]
       },
-      {
-        name: 1,
-      }
     ).toArray();
     return room;
   } catch (err) {

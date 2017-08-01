@@ -10,14 +10,14 @@ class Equipment extends Component {
   render() {
     return (
       <div className="equipment-container">
-        <span>We need:</span>
+        <span>Il me faut : </span>
         <label htmlFor="TV">
           <input
             name="TV"
             type="checkbox"
             onChange={this.handleCheckbox}
           />
-          TV
+          <span className="equipment-label-checkbox">TV</span>
         </label>
         <label htmlFor="Retro Projecteur">
           <input
@@ -25,7 +25,7 @@ class Equipment extends Component {
             type="checkbox"
             onChange={this.handleCheckbox}
           />
-          Retro Projecteur
+          <span className="equipment-label-checkbox">Retro Projecteur</span>
         </label>
       </div>
     );

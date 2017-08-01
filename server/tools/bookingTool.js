@@ -1,6 +1,7 @@
+import * as Getter from '../getters/getBooking.js';
 import moment from 'moment';
 
-const convertDate = async (day, time) => {
+const convertDate = (day, time) => {
   const year = moment(day).get('year');
   const month = moment(day).get('month');
   const date = moment(day).get('date');
@@ -15,6 +16,5 @@ const convertDate = async (day, time) => {
   }).toISOString();
   return ISOTime;
 }
-
 
 export { convertDate };

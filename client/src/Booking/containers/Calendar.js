@@ -34,29 +34,30 @@ class Calendar extends Component {
 
     return (
       <div className="calendar-container">
-      Day
         <SingleDatePicker
           date={day}
           onDateChange={this.handleDay}
           focused={this.state.focused}
           onFocusChange={({ focused }) => this.setState({ focused })}
         />
-        Starting at
-        <TimePicker
-          defaultValue={start}
-          format="HH:mm"
-          showSecond={false}
-          disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 22, 23]}
-          onChange={this.handleStartTime}
-        />
-        Ending at
-        <TimePicker
-          defaultValue={end}
-          format="HH:mm"
-          showSecond={false}
-          disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 22, 23]}
-          onChange={this.handleEndTime}
-        />
+        <div className="calendar-hours">
+          <span>De </span>
+          <TimePicker
+            defaultValue={start}
+            format="HH:mm"
+            showSecond={false}
+            disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 22, 23]}
+            onChange={this.handleStartTime}
+          />
+          <span> à </span>
+          <TimePicker
+            defaultValue={end}
+            format="HH:mm"
+            showSecond={false}
+            disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 22, 23]}
+            onChange={this.handleEndTime}
+          />
+        </div>
       </div>
     );
   }

@@ -3,10 +3,10 @@ import moment from 'moment';
 const checkDuration = async (startingTime, endingTime) => {
   const duration = moment(endingTime).diff(startingTime, 'minutes');
   if (duration < 0) {
-    return 'Your booking ends before it starts. Please check your timing!';
+    return 'Votre réservation a une heure de fin antérieure à l\'heure de début. Vérifiez vos horaires !';
   }
   if (duration < 15) {
-    return 'No booking for less than 15 minutes!';
+    return 'Pas de réservation de moins de 15 minutes !';
   }
   return null;
 }

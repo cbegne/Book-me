@@ -9,29 +9,28 @@ class ShowRooms extends Component {
   }
 
   render() {
-    const { rooms } = this.props;
+    const { rooms, error } = this.props;
+
+    if (error) return <div className="error">{error}</div>;
     if (rooms === undefined) return <div />;
-    switch (rooms.length) {
-      case 0:
-        return <div>Sorry, no room available with these requests!</div>;
-      default: {
-        const display = rooms.map((room) => {
-          const { _id } = room;
-          const key = `box_${_id}`;
-          return (
-            <RoomBox key={key} room={room} onClick={this.handleClick} />
-          );
-        });
-        return (
-          <div className="room-container">
-            Click on a room to confirm booking
-            <div className="room-box-header">
-              {display}
-            </div>
-          </div>
-        );
-      }
+    if (rooms.length === 0) {
+      return <div className="not-available">Désolé, il n{"'"}a pas de salles disponibles répondant à vos attentes...</div>;
     }
+    const display = rooms.map((room) => {
+      const { _id } = room;
+      const key = `box_${_id}`;
+      return (
+        <RoomBox key={key} room={room} onClick={this.handleClick} />
+      );
+    });
+    return (
+      <div className="room-container">
+        <span>Confirmez la salle que vous souhaitez réserver :</span>
+        <div className="room-box-header">
+          {display}
+        </div>
+      </div>
+    );
   }
 }
 

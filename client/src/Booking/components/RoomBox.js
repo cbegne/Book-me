@@ -12,10 +12,10 @@ class RoomBox extends Component {
     const { key, name, description, capacity, equipements } = this.props.room;
     const equipment = equipements.map(i => `${i.name} `);
     const tab = [
-      { name: 'Name', value: name },
+      { name: 'Nom', value: name },
       { name: 'Description', value: description },
-      { name: 'Capacity', value: capacity },
-      { name: 'Equipment', value: equipment },
+      { name: 'Capacité', value: capacity },
+      { name: 'Equipements', value: equipment },
     ];
     const show = tab.map(data => (
       <div key={data.name}>
@@ -30,7 +30,7 @@ class RoomBox extends Component {
           {show}
         </div>
         <button className="btn btn-default" name={name} onClick={this.handleClick}>
-          Book me!
+          Réservez moi!
         </button>
       </div>
     );

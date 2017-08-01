@@ -1,11 +1,12 @@
 import axios from 'axios';
-import React, { Component } from 'react';
 import moment from 'moment';
+import React, { Component } from 'react';
 
 import Calendar from './Calendar.js';
 import Capacity from '../components/Capacity.js';
-import ShowRooms from '../components/ShowRooms.js';
 import Equipment from '../components/Equipment.js';
+import ShowRooms from '../components/ShowRooms.js';
+import ShowBooking from '../components/ShowBooking.js';
 import SubmitForm from '../components/SubmitForm.js';
 
 import '../css/booking.css';
@@ -20,6 +21,8 @@ class Booking extends Component {
     equipment: [],
     error: '',
     rooms: undefined,
+    booked: false,
+    bookingInfos: {},
   }
 
   saveBooking = (room) => {
@@ -37,31 +40,31 @@ class Booking extends Component {
       if (success === false) {
         this.setState({ error });
       } else {
-        console.log(success);
-        // this.setState({ rooms });
+        const { startingTime, endingTime } = data;
+        const bookingInfos = { room, startingTime, endingTime };
+        this.setState({ rooms: undefined, booked: true, bookingInfos });
       }
     })
     .catch(err => console.error('Error: ', err));
   }
 
   saveState = (field, value) => {
-    this.setState({ [field]: value });
+    this.setState({ [field]: value, rooms: undefined });
   }
 
   saveDate = (field, value) => {
-    this.setState({ [field]: value });
+    this.setState({ [field]: value, rooms: undefined });
   }
 
   addEquipment = (value) => {
     const { equipment } = this.state;
-    // const index = equipment.indexOf(value);
     const index = equipment.findIndex(i => i.name === value);
     if (index === -1) {
       equipment.push({ name: value });
     } else {
       equipment.splice(index, 1);
     }
-    this.setState({ equipment });
+    this.setState({ equipment, rooms: undefined });
   }
 
   findRooms = (event) => {
@@ -83,28 +86,28 @@ class Booking extends Component {
         this.setState({ error });
       } else {
         const { rooms } = data;
-        this.setState({ rooms });
+        this.setState({ error: '', bookingInfos: {}, rooms });
       }
     })
     .catch(err => console.error('Error: ', err));
   }
 
   render() {
-    const { day, start, end, rooms } = this.state;
+    const { day, start, end, rooms, error, bookingInfos } = this.state;
 
     return (
       <div className="booking-container">
-        <h1>Book a room</h1>
-        <div>
-          The room I need:
+        <h1>Réserver une salle</h1>
+        <div className="">
+          <span>J{"'"}ai besoin d{"'"}une salle le : </span>
           <form className="" onSubmit={this.findRooms}>
             <Calendar day={day} start={start} end={end} onChange={this.saveDate} />
-            Filter more:
             <Capacity onChange={this.saveState} />
             <Equipment onChange={this.addEquipment} />
-            <SubmitForm className="btn btn-default" value="See availability" />
+            <SubmitForm className="btn btn-default" value="Voir disponibilités" />
           </form>
-          <ShowRooms rooms={rooms} onClick={this.saveBooking} />
+          <ShowRooms error={error} rooms={rooms} onClick={this.saveBooking} />
+          <ShowBooking booking={bookingInfos} />
         </div>
       </div>
     );

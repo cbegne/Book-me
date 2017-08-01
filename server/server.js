@@ -15,8 +15,6 @@ moment().locale('en-gb');
 // Connect to Mongo Database
 Mongo.connect();
 
-app.use('/static', express.static(`${__dirname}/tmp`));
-
 // Activate logging middleware
 app.use(morgan('dev'));
 

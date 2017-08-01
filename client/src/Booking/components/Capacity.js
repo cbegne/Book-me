@@ -18,11 +18,11 @@ class Capacity extends Component {
 
     return (
       <div className="capacity-container">
-        <span>We are</span>
+        <span>Nous sommes </span>
         <select name="people" onChange={this.handleSelect}>
           {list}
         </select>
-        <span>people</span>
+        <span> personnes.</span>
       </div>
     );
   }

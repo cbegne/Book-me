@@ -1,13 +1,37 @@
+h1 {
+  font-size: 1.5em;
+  line-height: 1.2em;
+  color: #ff00ae;
+}
+
+.booking-container {
+  margin: 0.5em;
+}
+
+.room-container, .booking-confirm, .error, .not-available {
+  margin-top: 1.5em;
+}
+
+.equipment-container, .capacity-container {
+  margin-top: 0.5em;
+}
+
+.equipment-label-checkbox {
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+  font-weight: normal;
+}
+
 .input-group {
-  width: 200px;
+  width: 20em;
 }
 
 .room-box {
-  padding: 15px;
-  margin: 5px;
+  padding: 1.5em;
+  margin: 0.5em;
   background-color: #ffffff;
   border: 1px solid #D8D8D8;
-  width: 280px;
+  width: 25em;
   text-decoration: none;
   text-align: left;
 }
@@ -18,5 +42,21 @@
 
 .infos-oneroom {
   display: inline-block;
-  width: 90px;
+  width: 9em;
+}
+
+.calendar-container {
+  margin: 0.5em;
+}
+
+.calendar-hours {
+  margin-top: 0.5em;
+}
+
+input.btn:hover, button.btn:hover {
+  border: 1px solid #ff00ae;
+}
+
+button.btn {
+  margin-left: 0.5em;
 }

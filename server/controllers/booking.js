@@ -8,10 +8,16 @@ import * as Tool from '../tools/bookingTool.js';
 
 const bookRoom = async (req, res) => {
   const login = 'cbegne'; // loggedUser, get from cookies or else
-  // check again that room is available
   const { day, start, end, room } = req.body;
   const startingTime = await Tool.convertDate(day, start);
   const endingTime = await Tool.convertDate(day, end);
+  const roomNotAvailable = await Getter.getAvailableRooms(startingTime, endingTime, [ room ]);
+  if (roomNotAvailable.length) {
+    return res.send({
+      success: false,
+      error: 'Oups... La salle a été réservée. Vous pouvez relancer la recheche pour trouver une autre salle.',
+    });
+  }
   const booking = {
     name: room,
     author: login,
@@ -23,17 +29,18 @@ const bookRoom = async (req, res) => {
   if (!control) {
     return res.send({
       success: false,
-      error: 'An error occured. Please try again or a bit later.', // TBD
+      error: 'Nous avons rencontré un problème. Veuillez réessayer plus tard.', // TBD
     });
   }
-  const file = '/static/bookings.json';
-  console.log(__dirname);
+  const file = `${__dirname}/../tmp/bookings.json`;
   try {
     jsonfile.writeFileSync(file, booking, {flag: 'a'})
   } catch (err) {
     console.error('Error: ', err)
   }
   return res.send({
+    startingTime,
+    endingTime,
     success: true,
     error: '',
   });
@@ -49,10 +56,17 @@ const findRoom = async (req, res) => {
   }
   const rooms = await Getter.getMatchingRooms(people, equipment);
   const roomNames = rooms.map(room => room.name);
-  const test = await Getter.getAvailableRooms(startingTime, endingTime, roomNames);
+  const roomsNotAvailable = await Getter.getAvailableRooms(startingTime, endingTime, roomNames);
+  const roomsNamesNotAvailable = roomsNotAvailable.map(room => room.name);
+  let roomsAvailable = [];
+  rooms.forEach((room) => {
+    if (roomsNamesNotAvailable.includes(room.name) === false) {
+      roomsAvailable.push(room);
+    }
+  })
   return res.send({
     success: true,
-    rooms,
+    rooms: roomsAvailable,
     error: '',
   });
 }

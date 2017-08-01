@@ -1,13 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class NoMatch extends Component {
-  render() {
-    return (
-      <div className="">
-        <div className="">This page is not available.</div>
-      </div>
-    );
-  }
-}
+const NoMatch = () => (<div className="">Cette pge n{"'"}est pas disponible.</div>);
 
 export default NoMatch;
