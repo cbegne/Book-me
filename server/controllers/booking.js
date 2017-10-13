@@ -48,6 +48,9 @@ const bookRoom = async (req, res) => {
 
 const findRoom = async (req, res) => {
   const { day, start, end, people, equipment } = req.body;
+  if (!day) {
+    return res.send({ success: false, error: "Vous n'avez pas sélectionné de date." });
+  }
   const startingTime = await Tool.convertDate(day, start);
   const endingTime = await Tool.convertDate(day, end);
   const error = await Control.checkDuration(startingTime, endingTime);

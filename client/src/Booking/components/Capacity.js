@@ -18,6 +18,7 @@ class Capacity extends Component {
 
     return (
       <div className="capacity-container">
+        <span className="glyphicon glyphicon-asterisk" />
         <span>Nous sommes </span>
         <select name="people" onChange={this.handleSelect}>
           {list}

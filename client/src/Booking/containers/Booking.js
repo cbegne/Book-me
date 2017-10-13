@@ -97,18 +97,16 @@ class Booking extends Component {
 
     return (
       <div className="booking-container">
-        <h1>Réserver une salle</h1>
-        <div className="">
-          <span>J{"'"}ai besoin d{"'"}une salle le : </span>
-          <form className="" onSubmit={this.findRooms}>
-            <Calendar day={day} start={start} end={end} onChange={this.saveDate} />
-            <Capacity onChange={this.saveState} />
-            <Equipment onChange={this.addEquipment} />
-            <SubmitForm className="btn btn-default" value="Voir disponibilités" />
-          </form>
-          <ShowRooms error={error} rooms={rooms} onClick={this.saveBooking} />
-          <ShowBooking booking={bookingInfos} />
-        </div>
+        <h1 className="booking-title">Réserver une salle</h1>
+        <form className="booking-form" onSubmit={this.findRooms}>
+          <span className="collage" />
+          <Calendar day={day} start={start} end={end} onChange={this.saveDate} />
+          <Capacity onChange={this.saveState} />
+          <Equipment onChange={this.addEquipment} />
+          <SubmitForm className="btn btn-secondary" value="Find a room" />
+        </form>
+        <ShowRooms error={error} rooms={rooms} onClick={this.saveBooking} />
+        <ShowBooking booking={bookingInfos} />
       </div>
     );
   }

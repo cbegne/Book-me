@@ -10,7 +10,8 @@ class Equipment extends Component {
   render() {
     return (
       <div className="equipment-container">
-        <span>Il me faut : </span>
+        <span className="glyphicon glyphicon-asterisk" />
+        <span>Il nous faut : </span>
         <label htmlFor="TV">
           <input
             name="TV"

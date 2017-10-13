@@ -29,8 +29,8 @@ class RoomBox extends Component {
         <div className="room-box">
           {show}
         </div>
-        <button className="btn btn-default" name={name} onClick={this.handleClick}>
-          Réservez moi!
+        <button className="btn btn-secondary" name={name} onClick={this.handleClick}>
+          Réservez moi !
         </button>
       </div>
     );

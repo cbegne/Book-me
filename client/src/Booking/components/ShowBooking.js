@@ -14,7 +14,8 @@ class ShowBooking extends Component {
     if (Object.keys(booking).length === 0) return <div />;
     return (
       <div className="booking-confirm">
-        C{"'"}est confirmé !
+        <span className="glyphicon glyphicon-ok" />
+        C{"'"}est confirmé !<br /><br />
         Vous avez réservé la {room} le {date}, de {start} à {end}.
       </div>
     );

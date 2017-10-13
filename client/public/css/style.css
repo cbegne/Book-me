@@ -5,10 +5,15 @@ html {
 }
 
 body {
-  position: relative;
   margin: 0;
-  padding-bottom: 6rem;
-  min-height: 100%;
-  font-family: 'Lato', sans-serif;
-  background-color: #f8f8f8;
+  /*min-height: 100%;*/
+  font-family: "FabrikatRegular", sans-serif;
+  background-color: #FFF;
+  color: #000;
+  padding-bottom: 10px; 
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

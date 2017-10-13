@@ -14,7 +14,7 @@ class ShowRooms extends Component {
     if (error) return <div className="error">{error}</div>;
     if (rooms === undefined) return <div />;
     if (rooms.length === 0) {
-      return <div className="not-available">Désolé, il n{"'"}a pas de salles disponibles répondant à vos attentes...</div>;
+      return <div className="not-available">Désolé, il n{"'"}a pas de salle disponible répondant à vos attentes...</div>;
     }
     const display = rooms.map((room) => {
       const { _id } = room;
@@ -23,9 +23,10 @@ class ShowRooms extends Component {
         <RoomBox key={key} room={room} onClick={this.handleClick} />
       );
     });
+
     return (
       <div className="room-container">
-        <span>Confirmez la salle que vous souhaitez réserver :</span>
+        <span className="room-box-header-title">Nous avons des salles disponibles pour vous !</span>
         <div className="room-box-header">
           {display}
         </div>
