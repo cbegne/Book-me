@@ -16,3 +16,12 @@ Response to a recruitment test
   * Check availability
   * Select room
   * Book it
+
+## Languages
+
+ReactJS / NodeJS
+
+## Screenshots
+
+<p align="center"><img src="https://user-images.githubusercontent.com/23556987/32992820-a830aabc-cd4f-11e7-944c-5e394ac8e08b.png"></p>
+
